@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "landing-agencia",
+    "nombre": "Landing Agencia Creativa",
+    "descripcionCorta": "Sitio corporativo responsivo",
+    "tags": ["React", "Tailwind", "Vercel"],
+    "portada": "/img/agencia/cover.jpg",
+    "screenshots": [
+      "/img/agencia/1.jpg",
+      "/img/agencia/2.jpg",
+      "/img/agencia/3.jpg"
+    ]
+  }
+]
