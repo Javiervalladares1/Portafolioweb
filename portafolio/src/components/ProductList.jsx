@@ -25,7 +25,7 @@ export default function ProductList({ projects }) {
   return (
     <div style={gridStyle}>
       {projects.map((p) => (
-        <Link key={p.slug} to={`/portfolio/${p.slug}`} style={s.link}>
+        <Link key={p.slug} to={`${p.slug}`} style={s.link}>
           <div style={s.card}>
             <div style={s.imgWrap}>
               <img src={p.portada} alt={p.nombre} style={s.img} />

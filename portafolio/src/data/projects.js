@@ -8,14 +8,14 @@ export const projects = [
     
   },
   {
-    slug: 'Laboratorios',
+    slug: 'Labs',
     nombre: 'Laboratorios',
     descripcionCorta: 'Carrito + pasarela Stripe (sandbox)',
     portada: '/img/html.png',
   
   },
   {
-    slug: 'proyectos',
+    slug: 'Projects',
     nombre: 'Proyectos',
     descripcionCorta: 'Plataforma de publicaciones dinámicas.',
     portada: '/img/css.png',

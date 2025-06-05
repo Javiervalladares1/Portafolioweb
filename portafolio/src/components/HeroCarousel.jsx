@@ -19,8 +19,8 @@ const banners = [
   {
     id: 3,
     image: '/img/calculadora.png',
-    headline: 'iPad Pro M4',
-    subheadline: 'Potencia y portabilidad en uno',
+    headline: 'Proyecto calculadora',
+    subheadline: 'Calcula y genera',
     cta: 'Conoce más',
   },
 ];

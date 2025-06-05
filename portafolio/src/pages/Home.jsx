@@ -18,7 +18,7 @@ export default function Home() {
       {/* 3. Título */}
       <div style={{ padding: '20px', textAlign: 'center' }}>
         <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#111' }}>
-          Proyectos disponibles
+         Sistemas y tecnologías Web
         </h2>
       </div>
 
