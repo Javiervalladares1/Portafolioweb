@@ -1,26 +1,25 @@
+// src/data/projects.js
 export const projects = [
   {
-    slug: "landing-agencia",
-    nombre: "Landing Agencia Creativa",
-    descripcionCorta: "Sitio corporativo responsivo",
-    tags: ["React", "Tailwind", "Vercel"],
-    portada: "/img/agencia/cover.jpg",
-    screenshots: [
-      "/img/agencia/1.jpg",
-      "/img/agencia/2.jpg",
-      "/img/agencia/3.jpg",
-    ],
+    slug: 'landing-agencia',
+    nombre: 'Landing Agencia Creativa',
+    descripcionCorta: 'Sitio corporativo responsivo para pymes.',
+    portada: '/img/hero.jpg', // asegúrate de que esta ruta exista en public/img
+    precio: 1200, // opcional
   },
   {
-    slug: "tienda-muebles",
-    nombre: "E-commerce de Muebles",
-    descripcionCorta: "Carrito + pasarela Stripe (sandbox)",
-    tags: ["React", "Node", "Stripe"],
-    portada: "/img/muebles/cover.jpg",
-    screenshots: [
-      "/img/muebles/1.jpg",
-      "/img/muebles/2.jpg",
-      "/img/muebles/3.jpg",
-    ],
+    slug: 'tienda-muebles',
+    nombre: 'E-commerce de Muebles',
+    descripcionCorta: 'Carrito + pasarela Stripe (sandbox)',
+    portada: '/img/hero.jpg',
+    precio: 950,
   },
+  {
+    slug: 'blog-tecnologia',
+    nombre: 'Blog de Tecnología',
+    descripcionCorta: 'Plataforma de publicaciones dinámicas.',
+    portada: '/img/hero.jpg',
+    // sin precio, mostrará la descripción en vez del precio
+  },
+  // …otros elementos del array
 ];

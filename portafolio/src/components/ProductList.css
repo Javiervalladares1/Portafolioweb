@@ -1,0 +1,37 @@
+/* src/components/ProductList.css */
+
+.product-grid {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  /* Por defecto, 1 columna */
+  grid-template-columns: repeat(1, 1fr);
+}
+
+/* A partir de 640px → 2 columnas */
+@media (min-width: 640px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* A partir de 768px → 3 columnas */
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* A partir de 1024px → 4 columnas */
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* A partir de 1280px → 5 columnas */
+@media (min-width: 1280px) {
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
