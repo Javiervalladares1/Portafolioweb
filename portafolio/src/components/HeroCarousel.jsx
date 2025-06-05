@@ -1,58 +1,53 @@
-// src/components/HeroCarousel.jsx
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const banners = [
   {
     id: 1,
-    image: "/img/banner1.jpg",
-    headline: "Descubre la nueva MacBook Air",
-    subheadline: "Diseñada para Apple Intelligence",
-    cta: "Ver más",
+    image: '/img/hero.jpg',
+    headline: 'Descubre la nueva MacBook Air',
+    subheadline: 'Diseñada para Apple Intelligence',
+    cta: 'Ver más',
   },
   {
     id: 2,
-    image: "/img/banner2.jpg",
-    headline: "iPhone 15 Pro Max",
-    subheadline: "Innovación sin límites",
-    cta: "Comprar ahora",
+    image: '/img/Competenciatec.png',
+    headline: 'La gran competencia tecnológica',
+    subheadline: 'Innovación sin límites',
+    cta: 'Ver ahora',
   },
   {
     id: 3,
-    image: "/img/banner3.jpg",
-    headline: "iPad Pro M4",
-    subheadline: "Potencia y portabilidad en uno",
-    cta: "Conoce más",
+    image: '/img/calculadora.png',
+    headline: 'iPad Pro M4',
+    subheadline: 'Potencia y portabilidad en uno',
+    cta: 'Conoce más',
   },
 ];
 
 const variants = {
-  enter: { opacity: 0, x: 100 },
+  enter: (dir) => ({ opacity: 0, x: dir > 0 ? 100 : -100 }),
   center: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -100 },
+  exit: (dir) => ({ opacity: 0, x: dir > 0 ? -100 : 100 }),
 };
 
 export default function HeroCarousel() {
   const [[page, direction], setPage] = useState([0, 0]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPage(([prevPage]) => [(prevPage + 1) % banners.length, 1]);
+    const timer = setInterval(() => {
+      setPage(([p]) => [(p + 1) % banners.length, 1]);
     }, 5000);
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
 
-  const paginate = (newDirection) => {
-    setPage(([prevPage]) => [
-      (prevPage + newDirection + banners.length) % banners.length,
-      newDirection,
-    ]);
-  };
+  const paginate = (dir) =>
+    setPage(([p]) => [(p + dir + banners.length) % banners.length, dir]);
 
   const banner = banners[page];
 
   return (
-    <div className="relative w-screen overflow-hidden">
+    <div style={styles.wrapper}>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={banner.id}
@@ -62,52 +57,112 @@ export default function HeroCarousel() {
           animate="center"
           exit="exit"
           transition={{ duration: 0.6 }}
-          className="relative h-[60vh] w-full bg-gray-100 sm:h-[50vh] md:h-[60vh] lg:h-[70vh]"
+          style={styles.slide}
         >
-          <img
-            src={banner.image}
-            alt={banner.headline}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="relative z-10 mx-auto flex h-full max-w-4xl flex-col justify-center px-4 text-white sm:px-6 md:px-8">
-            <h2 className="mb-2 text-2xl font-bold sm:text-3xl md:text-4xl">
-              {banner.headline}
-            </h2>
-            <p className="mb-4 text-lg sm:text-xl md:text-2xl">
-              {banner.subheadline}
-            </p>
-            <button className="w-max rounded-full border border-white bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur hover:bg-white hover:text-black sm:px-6 sm:py-3 sm:text-base">
-              {banner.cta}
-            </button>
+          <img src={banner.image} alt={banner.headline} style={styles.img} />
+
+          <div style={styles.content}>
+            <h2 style={styles.h1}>{banner.headline}</h2>
+            <p style={styles.sub}>{banner.subheadline}</p>
+            <button style={styles.btn}>{banner.cta}</button>
           </div>
         </motion.div>
       </AnimatePresence>
 
-      <button
-        onClick={() => paginate(-1)}
-        className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black sm:left-8"
-        aria-label="Anterior"
-      >
+      {/* Flechas */}
+      <button onClick={() => paginate(-1)} style={{ ...styles.arrow, left: 16 }}>
         ‹
       </button>
-      <button
-        onClick={() => paginate(1)}
-        className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black sm:right-8"
-        aria-label="Siguiente"
-      >
+      <button onClick={() => paginate(1)} style={{ ...styles.arrow, right: 16 }}>
         ›
       </button>
 
-      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 space-x-2">
-        {banners.map((_, idx) => (
-          <div
-            key={idx}
-            className={`h-2 w-2 rounded-full ${
-              idx === page ? "bg-white" : "bg-white/50"
-            }`}
+      {/* Puntos */}
+      <div style={styles.dots}>
+        {banners.map((_, i) => (
+          <span
+            key={i}
+            style={{
+              ...styles.dot,
+              opacity: i === page ? 1 : 0.4,
+            }}
           />
         ))}
       </div>
     </div>
   );
 }
+
+const styles = {
+  /* contenedor fijo: NO varía el alto → no empuja el layout */
+  wrapper: {
+    position: 'relative',
+    width: '100vw',
+    height: '60vh',         // fijo (ajusta al gusto)
+    minHeight: 300,
+    overflow: 'hidden',
+  },
+  /* cada slide ocupa todo el wrapper y se superpone */
+  slide: {
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+  },
+  img: {
+    position: 'absolute',
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
+  content: {
+    position: 'relative',
+    zIndex: 2,
+    maxWidth: 500,
+    marginLeft: 32,
+    top: '50%',
+    transform: 'translateY(-50%)',
+    color: 'var(--white)',
+  },
+  h1: { margin: 0, fontSize: '2rem', fontWeight: 700 },
+  sub: { margin: '8px 0 24px', fontSize: '1.1rem' },
+  btn: {
+    padding: '10px 24px',
+    borderRadius: 999,
+    border: '2px solid var(--white)',
+    background: 'transparent',
+    color: 'var(--white)',
+    fontWeight: 600,
+    cursor: 'pointer',
+  },
+  arrow: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: 3,
+    background: 'rgba(0,0,0,.35)',
+    color: '#fff',
+    border: 'none',
+    width: 36,
+    height: 36,
+    borderRadius: '50%',
+    cursor: 'pointer',
+    fontSize: 24,
+    lineHeight: '34px',
+  },
+  dots: {
+    position: 'absolute',
+    bottom: 16,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    display: 'flex',
+    gap: 8,
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: '50%',
+    background: '#fff',
+  },
+};

@@ -1,24 +1,24 @@
 // src/data/projects.js
 export const projects = [
   {
-    slug: 'landing-agencia',
-    nombre: 'Landing Agencia Creativa',
-    descripcionCorta: 'Sitio corporativo responsivo para pymes.',
-    portada: '/img/hero.jpg', // asegúrate de que esta ruta exista en public/img
-    precio: 1200, // opcional
+    slug: 'tareas',
+    nombre: 'Tareas',
+    descripcionCorta: 'Estas son las tareas que hice en web este semestre',
+    portada: '/img/react.png', // asegúrate de que esta ruta exista en public/img
+    
   },
   {
-    slug: 'tienda-muebles',
-    nombre: 'E-commerce de Muebles',
+    slug: 'Laboratorios',
+    nombre: 'Laboratorios',
     descripcionCorta: 'Carrito + pasarela Stripe (sandbox)',
-    portada: '/img/hero.jpg',
-    precio: 950,
+    portada: '/img/html.png',
+  
   },
   {
-    slug: 'blog-tecnologia',
-    nombre: 'Blog de Tecnología',
+    slug: 'proyectos',
+    nombre: 'Proyectos',
     descripcionCorta: 'Plataforma de publicaciones dinámicas.',
-    portada: '/img/hero.jpg',
+    portada: '/img/css.png',
     // sin precio, mostrará la descripción en vez del precio
   },
   // …otros elementos del array

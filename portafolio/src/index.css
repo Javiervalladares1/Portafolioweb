@@ -2,11 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ajustes globales */
-html {
-  scroll-behavior: smooth;
+/* Paleta */
+:root {
+  --blue: #0d6efd;
+  --blue-dark: #0b2347;
+  --black: #111111;
+  --white: #ffffff;
+}
+
+/* Reset básicos y fuente */
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  @apply bg-zinc-50 dark:bg-zinc-900;
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Hover lift para las cards */
+a:hover > div {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(13, 110, 253, 0.25);
 }

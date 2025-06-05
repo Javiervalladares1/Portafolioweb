@@ -1,85 +1,50 @@
-// src/components/CategoryCarousel.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CategoryCarousel = ({ categories }) => {
+export default function CategoryCarousel({ categories }) {
   return (
-    <div style={styles.flexContainer}>
-      {categories.map((cat) => (
-        <Link
-          to={`/categoria/${cat.id}`}
-          key={cat.id}
-          style={styles.cardLink}
-        >
-          <div style={styles.card}>
-            <div style={styles.imageWrapper}>
-              <img
-                src={cat.image}
-                alt={cat.name}
-                style={styles.image}
-              />
+    <div style={styles.wrap}>
+      <div style={styles.row}>
+        {categories.map((cat) => (
+          <Link key={cat.id} to={`/categoria/${cat.id}`} style={styles.link}>
+            <div style={styles.card}>
+              <div style={styles.imgBox}>
+                <img src={cat.image} alt={cat.name} style={styles.img} />
+              </div>
+              <span style={styles.name}>{cat.name}</span>
             </div>
-            <div style={styles.text}>
-              <h3 style={styles.title}>{cat.name}</h3>
-              <p style={styles.subtitle}>{cat.tagline}</p>
-            </div>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 const styles = {
-  flexContainer: {
-    display: 'flex',
+  wrap: {
+    width: '100vw',              // ⬅️ toda la pantalla
     overflowX: 'auto',
-    gap: '20px',
-    padding: '20px',
-    // Evita que los items se envuelvan verticalmente:
-    whiteSpace: 'nowrap',
+    padding: '16px 0',
+    background: 'var(--white)',
   },
-  cardLink: {
-    textDecoration: 'none',
-    color: 'inherit',
-    flexShrink: 0,
+  row: {
+    display: 'flex',
+    gap: 24,
+    padding: '0 20px',
+    width: 'max-content',
   },
+  link: { flexShrink: 0, textDecoration: 'none' },
   card: {
-    width: 160,               // ancho fijo de cada tarjeta (px)
-    backgroundColor: '#fff',
-    borderRadius: 10,         // px
-    overflow: 'hidden',
-    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-    transition: 'transform 0.2s',
-  },
-  imageWrapper: {
-    width: '100%',
-    paddingTop: '75%',        // ratio 4:3
-    position: 'relative',
-  },
-  image: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'contain',
-  },
-  text: {
-    padding: '10px 15px',
+    width: 120,
     textAlign: 'center',
+    borderRadius: 10,
+    border: '1px solid rgba(13,110,253,.15)',
+    padding: 12,
+    background: '#fff',
+    boxShadow: '0 2px 6px rgba(13,110,253,.1)',
+    transition: 'transform .2s',
   },
-  title: {
-    margin: 0,
-    fontSize: '0.9rem',
-    fontWeight: 600,
-    color: '#111',
-  },
-  subtitle: {
-    margin: '6px 0 0',
-    fontSize: '0.8rem',
-    color: '#555',
-  },
+  imgBox: { width: '100%', height: 72, marginBottom: 8 },
+  img: { maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' },
+  name: { fontSize: 14, fontWeight: 500, color: 'var(--black)' },
 };
-
-export default CategoryCarousel;
